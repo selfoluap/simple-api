@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 import random
 import time
+import uvicorn
 
 app = FastAPI()
 
@@ -92,6 +93,10 @@ def update_ship_status():
             elif isinstance(value, float):
                 ship_data[key] += random.uniform(-0.05, 0.05)
 
+@app.get("/")
+def read_root():
+    return {"Hello": "World"}
+
 @app.get("/ship_information/{ship_id}")
 def get_ship_information(ship_id: int):
     return {
@@ -110,3 +115,6 @@ def get_ship_status(ship_id: int):
         "datetime": time.time(),
         **ship_status_data[ship_id] 
     }
+
+if __name__ == "__main__":
+    uvicorn.run(app, host="0.0.0.0", port=80)
