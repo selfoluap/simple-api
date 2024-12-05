@@ -1,14 +1,9 @@
 {
-    "builds": [
-      {
-        "src": "endpoints.py",
-        "use": "@vercel/python"
-      }
-    ],
-    "routes": [
-      {
-        "src": "/(.*)",
-        "dest": "endpoints.py"
-      }
-    ]
-  }
+	"version": 2,
+	"builds": [{ "src": "endpoints.py", "use": "@vercel/python" }],
+	"routes": [
+		{ "src": "/", "dest": "endpoints.py" },
+		{ "src": "/docs", "dest": "endpoints.py" },
+		{ "src": "/openapi.json", "dest": "endpoints.py" }
+	]
+}
